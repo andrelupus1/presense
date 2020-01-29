@@ -1,0 +1,218 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-button>
+          <ion-icon slot="icon-only" name="reorder"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="validations_form" (ngSubmit)="onSubmit()" id="perfil-form" *ngFor='let user of users' novalidate>
+    <ion-card id="perfil-dados">
+      <!-- *ngFor='let user of users' -->
+      <ion-input type="text" formControlName="idade" [value]="[user.user.idade]" hidden></ion-input>
+      <ion-input type="text" formControlName="pessoa_id" [value]="[user.user.pessoa_id]" hidden> </ion-input>
+      <ion-input type="text" formControlName="carro_id" [value]="[user.user.carro_id]" hidden> </ion-input>
+      <ion-input type="text" formControlName="celular_id" [value]="[user.user.celular_id]" hidden> </ion-input>
+      <ion-input type="text" formControlName="id" [value]="[user.user.id]" hidden></ion-input>
+
+      <ion-list id="perfil-list1">
+        <ion-item id="perfil-nome">
+          <ion-label position="floating" color="primary">
+            Nome
+          </ion-label>
+          <ion-input type="text" formControlName="nome" [value]="[user.user.nome]"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.nome">
+            <div class="error-message"
+              *ngIf="validations_form.get('nome').hasError(validation.type) && (validations_form.get('nome').dirty || validations_form.get('nome').touched||validations_form.get('nome').untouched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item id="perfil-sobrenome">
+          <ion-label position="floating" color="primary">
+            Sobrenome
+          </ion-label>
+          <ion-input type="text" formControlName="sobrenome" [value]="[user.user.sobrenome]"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.sobrenome">
+            <div class="error-message"
+              *ngIf="validations_form.get('sobrenome').hasError(validation.type) && (validations_form.get('sobrenome').dirty || validations_form.get('sobrenome').touched||validations_form.get('sobrenome').untouched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item id="perfil-email">
+          <ion-label position="floating" color="primary">
+            E-mail
+          </ion-label>
+          <ion-input type="email" formControlName="email" [value]="[user.user.email]"></ion-input>
+        </ion-item>
+
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div class="error-message"
+              *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched||validations_form.get('email').untouched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item id="perfil-sexo">
+          <ion-label position="floating" color="primary">
+            Sexo
+          </ion-label>
+          <ion-select formControlName="sexo" cancelText="Cancelar" okText="OK">
+            <ion-select-option *ngFor="let sexo of sexos" [value]="sexo">{{sexo}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Senha -->
+        <ion-item>
+          <ion-label position="floating" color="primary">
+            Senha
+          </ion-label>
+          <ion-input id="senha" type="password" formControlName="senha">
+          </ion-input>
+        </ion-item>
+
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.senha">
+            <div class="error-message"
+              *ngIf="validations_form.get('senha').hasError(validation.type) && (validations_form.get('senha').dirty || validations_form.get('senha').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <!-- ./Senha -->
+
+        <ion-item id="perfil-idade">
+          <ion-label position="floating" color="primary">
+            Data de Nascimento
+          </ion-label>
+          <!-- <ion-input type="text" formControlName="data" placeholder="00/00/0000"></ion-input> -->
+          <ion-datetime display-format="DD-MM-YYYY" picker-format="DD MM YYYY" placeholder="Selecione" min="1910-01-01"
+            cancelText="Cancelar" doneText="OK" formControlName="datanascimento">
+          </ion-datetime>
+          <!-- [value]="[user.user.nasc]" -->
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.datanascimento">
+            <div class="error-message"
+              *ngIf="validations_form.get('datanascimento').hasError(validation.type) && (validations_form.get('datanascimento').dirty || validations_form.get('datanascimento').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+      </ion-list>
+    </ion-card>
+
+    <ion-card id="perfil-demaisdados">
+      <ion-list>
+        <!-- Notificar -->
+        <ion-item id="notificar-tg">
+          <ion-label color="primary">Notificar Alguém?</ion-label>
+          <ion-toggle (click)="toggle('notifica_email')"></ion-toggle>
+        </ion-item>
+
+        <ion-item id="perfil-notifica_email" *ngIf="notifica_toggle">
+          <ion-label position="floating" color="primary">
+            E-mail da pessoa
+          </ion-label>
+          <ion-input type="email" placeholder="notificar@dominio.com" formControlName="notifica_email"
+            [value]="[user.user.notifica_email]"></ion-input>
+        </ion-item>
+        <!-- Automovel -->
+        <!-- <div formGroupName="automovel"> -->
+        <div>
+          <ion-item id="automovel-tg">
+            <ion-label color="primary">Possui algum Automóvel?</ion-label>
+            <ion-toggle (click)="toggle('automovel')"></ion-toggle>
+          </ion-item>
+
+          <ion-list id="perfil-auto" *ngIf="automovel_toggle">
+            <ion-item>
+              <ion-label position="floating" color="primary">
+                Marca
+              </ion-label>
+              <ion-input type="text" placeholder="HONDA" formControlName="marca_auto"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating" color="primary">
+                ANO
+              </ion-label>
+              <ion-input type="text" placeholder="2019/2020" formControlName="ano_auto" [value]="[user.user.nasc]">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating" color="primary">
+                Tipo
+              </ion-label>
+              <!-- <ion-input type="text" placeholder="AUTOMOVEL" formControlName="tipo_auto"></ion-input> -->
+              <ion-select value="Carro" okText="Ok" cancelText="Cancelar" formControlName="tipo_auto"
+                placeholder="Selecione">
+                <ion-select-option value="Carro">Carro</ion-select-option>
+                <ion-select-option value="Caminhonete">Caminhonete</ion-select-option>
+                <ion-select-option value="Moto">Moto</ion-select-option>
+                <ion-select-option value="Outros">Outros</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating" color="primary">
+                UF-PLACA
+              </ion-label>
+              <!-- <ion-input type="text" placeholder="SP" formControlName="uf_placa"></ion-input> -->
+              <ion-select formControlName="uf_placa" cancelText="Cancelar" okText="OK">
+                <ion-select-option *ngFor="let uf of estados" [value]="uf">{{uf}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+          </ion-list>
+        </div>
+        <!-- ./carro -->
+
+        <!-- Celular -->
+        <!-- <div formGroupName="celular"> -->
+        <div>
+          <ion-item id="celular-tg">
+            <ion-label color="primary">
+              Possui Celular?
+            </ion-label>
+            <ion-toggle (click)="toggle('celular')"></ion-toggle>
+          </ion-item>
+
+          <ion-item id="perfil-celular" *ngIf="celular_toggle">
+            <ion-label position="floating" color="primary">
+              Marca
+            </ion-label>
+            <!-- <ion-input type="text" placeholder="" formControlName="marca_celular"></ion-input> -->
+            <ion-select formControlName="marca_celular" cancelText="Cancelar" okText="OK">
+              <ion-select-option *ngFor="let marca of marcas" [value]="marca">{{marca}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <!-- ./celular -->
+      </ion-list>
+    </ion-card>
+
+    <ion-button color="primary" class="submit-btn" expand="full" type="submit" [disabled]="!validations_form.valid">
+      Atualizar
+    </ion-button>
+  </form>
+  <!-- <p>Valor do formulário: {{validations_form.value | json}}</p>
+  <p>Validation status: {{ validations_form.status }}</p> -->
+</ion-content>

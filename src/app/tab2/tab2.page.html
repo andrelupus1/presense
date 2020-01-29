@@ -1,0 +1,113 @@
+<ion-header>
+  <app-header></app-header>
+  <!--   <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-button>
+          <ion-icon slot="icon-only" name="reorder"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>
+      PreSense
+    </ion-title>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-card *ngIf="fator">
+    Fator: {{fator}}
+  </ion-card> -->
+
+  <!--   <ion-card>
+   <ion-button (click)="btnOnClick()">Enviar Notificação!</ion-button>
+  </ion-card> -->
+
+  <ion-card color="{{cor[fator]}}">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon size="large" name="{{icon[fator]}}"></ion-icon>
+        <h1>{{title[fator]}}</h1>
+      </ion-card-title>
+      <ion-card-subtitle>
+        <h2>{{subtitle[fator]}}</h2>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text size="large">
+        <p>{{content[fator]}}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="crime" color="{{cor[1]}}">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon color="danger" size="large" name="pin"></ion-icon>
+        <ion-button expand="full" color="light">Crimes mais comum na Região?</ion-button>
+      </ion-card-title>
+      <ion-card-subtitle>
+        <ion-button (click)="btnOnClick()">Roubo de CELULAR</ion-button>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Maior evidência de roubo de celulares no local. Cuidado com o seu aparelho!
+    <!--   <ion-item>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-select-option value="1" selected>Roubo de CELULAR</ion-select-option>
+          <ion-select-option value="2">Furto de Veículo</ion-select-option>
+          <ion-select-option value="3">Latrocínio</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="pessoa" color="{{cor[2]}}">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon size="large" name="person"></ion-icon>
+        <h1>Sou a pessoa errada?</h1>
+      </ion-card-title>
+      <ion-card-subtitle>
+        <ion-button (click)="btnOnClick()">SIM!</ion-button>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+        Você fecha 5 de 7 características no perfil de vítima da região.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="local" color="{{cor[3]}}">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon size="large" name="locate"></ion-icon>
+        <h1>Estou no Lugar Errado?</h1>
+      </ion-card-title>
+      <ion-card-subtitle>
+          <ion-button (click)="btnOnClick()">SIM!</ion-button>
+          <!-- <span>Sua Posição é: Latitude: {{getPosicao.latLng["lat"]}} e Longitude: {{getPosicao.latLng["lng"]}}</span> -->
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+        <p>Você está numa região de MÉDIA criminalidade!
+        Seu perímetro tem 3x mais crimes que a região.</p>
+       
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="tempo" color="{{cor[fator]}}">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon size="large" name="timer"></ion-icon>
+        <h1>Estou na hora Errada?</h1>
+      </ion-card-title>
+      <ion-card-subtitle>
+          <ion-button (click)="btnOnClick()">SIM!</ion-button>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+        Nossa IA detectou que a previsão de crimes está ALTA nas próximas horas para o seu perfil.
+    </ion-card-content>
+  </ion-card>
+</ion-content>

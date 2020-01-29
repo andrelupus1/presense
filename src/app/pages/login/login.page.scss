@@ -1,0 +1,51 @@
+ion-content {
+  --background: url("../../../assets/img/background_1.jpg") no-repeat 100% 100%;
+  //--background: url("../../../assets/img/background.png") no-repeat 100% 100%;
+  //--background: rgba(255, 255, 255, 0);
+}
+page-login {
+  .login-content {
+    //--background: var(--ion-color-medium-tint);
+    display: flex;
+    align-items: center; /* vertical alignment */
+    justify-content: center; /* horizontal alignment */
+  
+  }
+
+  .logo {
+   // color: white;
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    align-items: center; /* vertical alignment */
+    padding-top: 50px;
+    background-position-x: center;
+  }
+  .description {
+    color: white;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .log-in-button {
+    margin-top: 40px;
+    font-weight: bold;
+  }
+  .select {
+    width: 20%;
+    float: left;
+    border-bottom: 1px solid #ccc;
+  }
+  .num {
+    width: 80%;
+    float: right;
+    top: -41px;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    left: 45px;
+  }
+  .error {
+    color: #ff0000;
+    font-size: 12px;
+  }
+}

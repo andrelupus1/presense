@@ -1,0 +1,7 @@
+{
+  "name": "preSense",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

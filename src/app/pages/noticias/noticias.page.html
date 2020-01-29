@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-toggle>
+            <ion-button>
+              <ion-icon slot="icon-only" name="reorder"></ion-icon>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-buttons>
+    <ion-title>noticias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+   
+<ion-content>
+    <ion-item-divider>
+        <ion-fab right bottom class="web-fab">
+          <button ion-fab icon-only color="primary" (click)="checkPlatform()">
+            <ion-icon name="help"></ion-icon>
+          </button>
+        </ion-fab>
+    
+        <ion-fab right top edge class="mobile-fab">
+          <button ion-fab icon-only color="primary" (click)="checkPlatform()">
+            <ion-icon name="help"></ion-icon>
+          </button>
+        </ion-fab>
+      </ion-item-divider>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let user of users | async" col-12 col-xl-2 col-lg-3 col-md-4>
+        <ion-card>
+          <ion-item>
+            <ion-avatar item-start>
+              <img [src]="user.picture.medium">
+            </ion-avatar>
+            <h2 text-capitalize>{{ user.name?.first }} {{ user.name?.last }}</h2>
+          </ion-item>
+          <!-- <ion-card-content *ngFor="let post of posts">
+            <h1>{{post.title}}</h1>
+            <p>{{post.body}}</p>
+            
+          </ion-card-content> -->
+        </ion-card>
+      </ion-col>
+      <ion-card-content *ngFor="let post of posts | async">
+        <h1>{{post.title}}</h1>
+        <p>{{post.body}}</p>
+        
+      </ion-card-content>
+    </ion-row>
+  </ion-grid>
+</ion-content>
